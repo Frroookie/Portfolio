@@ -1,0 +1,984 @@
+
+Index · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rickroman T. Lobaton — Portfolio</title>
+<meta name="description" content="Junior software developer from Malabon City, Philippines. BSIT 2025, Magna Cum Laude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+ 
+/* ============================================================
+   TOKENS — warm dark editorial
+============================================================ */
+:root {
+  --bg:          #0F1115;
+  --surface:     #1A1D23;
+  --card:        #25292F;
+  --border:      #353B44;
+  --border-dim:  #2A2E36;
+  --text:        #F5F0E8;
+  --text-dim:    #9CA3AF;
+  --text-faint:  #6B7280;
+  --accent:      #E8A030;   /* amber — the throughline */
+  --accent-dim:  rgba(232,160,48,0.10);
+ 
+  /* project-specific accents */
+  --pond-green:  #5C8E6A;
+  --rift-red:    #C44040;
+  --pos-amber:   #E8A030;
+ 
+  --fd: 'DM Serif Display', Georgia, serif;
+  --fb: 'Inter', sans-serif;
+  --fm: 'DM Mono', monospace;
+}
+ 
+/* ============================================================
+   RESET
+============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fb);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ 
+/* ============================================================
+   LAYOUT
+============================================================ */
+.shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+ 
+/* ============================================================
+   NAV
+============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(15,17,21,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-dim);
+}
+ 
+.nav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.nav-logo {
+  font-family: var(--fm);
+  font-size: 0.82rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+ 
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+ 
+.nav-links a:hover { color: var(--text); }
+ 
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--border-dim);
+}
+ 
+.hero-eyebrow {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+ 
+.hero h1 {
+  font-family: var(--fd);
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  max-width: 820px;
+}
+ 
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+ 
+.hero-sub {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+ 
+.hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
+.pill {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+ 
+.pill.accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+ 
+/* ============================================================
+   MARQUEE TAPE STRIP — signature element
+============================================================ */
+.tape-wrap {
+  border-top: 1px solid var(--border-dim);
+  border-bottom: 1px solid var(--border-dim);
+  background: var(--surface);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+ 
+.tape-inner {
+  display: inline-flex;
+  animation: marquee 22s linear infinite;
+}
+ 
+.tape-inner:hover { animation-play-state: paused; }
+ 
+.tape-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 28px;
+}
+ 
+.tape-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+ 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+ 
+/* ============================================================
+   SECTION SHARED
+============================================================ */
+.section {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--border-dim);
+}
+ 
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+ 
+.section-eyebrow {
+  font-family: var(--fm);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+ 
+.section-title {
+  font-family: var(--fd);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+ 
+.section-note {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+ 
+/* ============================================================
+   PROJECT CARDS — tabbed file aesthetic
+============================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+ 
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+ 
+.project-card:hover {
+  transform: translateY(-4px);
+}
+ 
+/* the "tabbed file" ledge — the signature element */
+.card-ledge {
+  height: 4px;
+  flex-shrink: 0;
+}
+ 
+.ledge-pond  { background: var(--pond-green); }
+.ledge-rift  { background: var(--rift-red); }
+.ledge-pos   {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pos-amber) 0px,
+    var(--pos-amber) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+ 
+/* preview area */
+.card-preview {
+  height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+ 
+/* Duck preview — 2x2 photo grid */
+.preview-pond { background: #0e1a0f; }
+ 
+.duck-mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+ 
+.duck-mosaic img {
+  width: 100%;
+  height: 88px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+ 
+/* Rift Report preview — editorial dark */
+.preview-rift {
+  background: #24131d;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+ 
+.rift-mock-tag {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  color: #f1b54d;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+ 
+.rift-mock-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  color: #f8ecef;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+ 
+.rift-mock-divider {
+  width: 100%;
+  height: 1px;
+  background: #4a2d3d;
+  margin-bottom: 10px;
+}
+ 
+.rift-mock-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ 
+.rift-mock-list li {
+  font-size: 0.72rem;
+  color: #d1b3be;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+ 
+.rift-mock-list li::before {
+  content: '▸';
+  color: #ff4d6d;
+  font-size: 0.6rem;
+}
+ 
+/* POS placeholder preview */
+.preview-pos {
+  background: var(--surface);
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.pos-coming-stamp {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  padding: 6px 16px;
+  border-radius: 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+ 
+.pos-placeholder-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 60%;
+  opacity: 0.25;
+}
+ 
+.pos-line {
+  height: 8px;
+  border-radius: 3px;
+  background: var(--text-dim);
+}
+ 
+.pos-line.short { width: 60%; }
+.pos-line.xshort { width: 40%; }
+ 
+/* card body */
+.card-body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+ 
+.card-tag-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+ 
+.card-tag {
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--border-dim);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+ 
+.card-name {
+  font-family: var(--fd);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+ 
+.card-desc {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex: 1;
+}
+ 
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-dim);
+}
+ 
+.card-status {
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+ 
+.dot-live    { background: var(--pond-green); }
+.dot-pending { background: var(--pos-amber); opacity: 0.6; }
+ 
+.card-link {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 4px;
+  transition: border-color 0.15s, color 0.15s;
+}
+ 
+.card-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+ 
+.card-link.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+ 
+/* ============================================================
+   ABOUT
+============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: start;
+}
+ 
+.about-body p {
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+  max-width: 580px;
+}
+ 
+.about-body p strong { color: var(--text); }
+.about-body p:last-child { margin-bottom: 0; }
+ 
+.about-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.sidebar-block {
+  background: var(--surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+  overflow: hidden;
+}
+ 
+.sb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-dim);
+  gap: 12px;
+}
+ 
+.sb-row:last-child { border-bottom: none; }
+ 
+.sb-key {
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+ 
+.sb-val {
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: right;
+}
+ 
+.sb-val.hi  { color: var(--accent); }
+.sb-val.ok  { color: var(--pond-green); }
+ 
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact-section { padding: 88px 0 100px; }
+ 
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+ 
+.contact-body p {
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
+  max-width: 420px;
+}
+ 
+.contact-body p:last-child { margin-bottom: 28px; }
+ 
+.contact-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+ 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: opacity 0.15s, border-color 0.15s, color 0.15s;
+}
+ 
+.btn-fill {
+  background: var(--accent);
+  color: #0F1115;
+  font-weight: 500;
+}
+ 
+.btn-fill:hover { opacity: 0.88; }
+ 
+.btn-ghost {
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+ 
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+ 
+.contact-links { display: flex; flex-direction: column; gap: 10px; }
+ 
+.c-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+ 
+.c-link:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+ 
+.c-icon { font-size: 1rem; width: 24px; text-align: center; flex-shrink: 0; }
+ 
+.c-label {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  display: block;
+  margin-bottom: 2px;
+}
+ 
+.c-val { font-size: 0.88rem; color: var(--text-dim); }
+.c-link:hover .c-val { color: var(--accent); }
+ 
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+  border-top: 1px solid var(--border-dim);
+  padding: 28px 0 36px;
+}
+ 
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+ 
+.f-left { font-family: var(--fm); font-size: 0.75rem; color: var(--text-faint); }
+.f-right { display: flex; gap: 20px; font-family: var(--fm); font-size: 0.75rem; color: var(--text-faint); }
+.f-right a:hover { color: var(--accent); }
+ 
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+  .project-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+}
+ 
+@media (max-width: 640px) {
+  .project-grid { grid-template-columns: 1fr; }
+  .shell { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section { padding: 64px 0; }
+  .hero { padding: 100px 0 64px; }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+ 
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">rtlobaton</span>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="shell">
+    <p class="hero-eyebrow">Malabon City, Philippines</p>
+    <h1>Rickroman T.<br><em>Lobaton</em></h1>
+    <p class="hero-sub">
+      BSIT graduate, Magna Cum Laude. I build web applications,
+      design relational databases, and write the kind of code that
+      holds up when things get complicated.
+    </p>
+    <div class="hero-pills">
+      <span class="pill accent">Open to work</span>
+      <span class="pill">PHP · MySQL · JavaScript</span>
+      <span class="pill">Python · Git</span>
+      <span class="pill">BSIT 2025</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- MARQUEE TAPE — signature element -->
+<div class="tape-wrap" aria-hidden="true">
+  <div class="tape-inner">
+    <!-- duplicated for seamless loop -->
+    <span class="tape-item"><span class="tape-dot"></span>Pondnotes — Duck Field Guide</span>
+    <span class="tape-item"><span class="tape-dot"></span>Rift Report — Riot Games News</span>
+    <span class="tape-item"><span class="tape-dot"></span>Mini POS — Coming Soon</span>
+    <span class="tape-item"><span class="tape-dot"></span>PHP · MySQL · PDO</span>
+    <span class="tape-item"><span class="tape-dot"></span>Bootstrap 5 · Vanilla JS</span>
+    <span class="tape-item"><span class="tape-dot"></span>HTML · CSS · Static Sites</span>
+    <span class="tape-item"><span class="tape-dot"></span>Pondnotes — Duck Field Guide</span>
+    <span class="tape-item"><span class="tape-dot"></span>Rift Report — Riot Games News</span>
+    <span class="tape-item"><span class="tape-dot"></span>Mini POS — Coming Soon</span>
+    <span class="tape-item"><span class="tape-dot"></span>PHP · MySQL · PDO</span>
+    <span class="tape-item"><span class="tape-dot"></span>Bootstrap 5 · Vanilla JS</span>
+    <span class="tape-item"><span class="tape-dot"></span>HTML · CSS · Static Sites</span>
+  </div>
+</div>
+ 
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="shell">
+    <div class="section-head">
+      <div>
+        <p class="section-eyebrow">Work</p>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <span class="section-note">3 projects — 3 Live</span>
+    </div>
+ 
+    <div class="project-grid">
+ 
+      <!-- PONDNOTES -->
+      <div class="project-card">
+        <div class="card-ledge ledge-pond"></div>
+        <div class="card-preview preview-pond">
+          <div class="duck-mosaic">
+            <img src="mallard.jpg" alt="Mallard duck">
+            <img src="Mandarin Duck.jpg" alt="Mandarin Duck">
+            <img src="Bufflehead.jpg" alt="Bufflehead">
+            <img src="harlequin.jpg" alt="Harlequin Duck">
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag-row">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">Static</span>
+          </div>
+          <h3 class="card-name">Pondnotes</h3>
+          <p class="card-desc">
+            A personal duck field guide — 8 species with photos and field notes,
+            plus a fun facts page. Built because I grew up with a pet duck and never
+            lost interest in the variety of species. Custom CSS, no frameworks.
+          </p>
+          <div class="card-footer">
+            <div class="card-status">
+              <span class="status-dot dot-live"></span>
+              <span style="color:var(--pond-green);">Live</span>
+            </div>
+            <a href="https://frroookie.github.io/Duck-information/" target="_blank" rel="noopener" class="card-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- RIFT REPORT -->
+      <div class="project-card">
+        <div class="card-ledge ledge-rift"></div>
+        <div class="card-preview preview-rift">
+          <div class="rift-mock-tag">Riot Games Corner</div>
+          <div class="rift-mock-title">Rift Report</div>
+          <div class="rift-mock-divider"></div>
+          <ul class="rift-mock-list">
+            <li>MSI 2026 — 11 qualified teams</li>
+            <li>VCT Masters London bracket</li>
+            <li>League · Valorant coverage</li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="card-tag-row">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">Static</span>
+          </div>
+          <h3 class="card-name">Rift Report</h3>
+          <p class="card-desc">
+            A fan news site covering Riot Games' two biggest titles — League of Legends
+            and Valorant. Tracks MSI 2026 qualified teams and the VCT Masters London
+            bracket. Dark editorial aesthetic, completely different from Pondnotes on purpose.
+          </p>
+          <div class="card-footer">
+            <div class="card-status">
+              <span class="status-dot dot-live"></span>
+              <span style="color:var(--pond-green);">Live</span>
+            </div>
+            <a href="https://frroookie.github.io/RiotGames/" target="_blank" rel="noopener" class="card-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- MINI POS — PLACEHOLDER -->
+      <div class="project-card" style="opacity: 0.75;">
+        <div class="card-ledge ledge-pos"></div>
+        <div class="card-preview preview-pos">
+          <span class="pos-coming-stamp">Mini-POS</span>
+          <div class="pos-placeholder-lines">
+            <div class="pos-line"></div>
+            <div class="pos-line short"></div>
+            <div class="pos-line"></div>
+            <div class="pos-line xshort"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag-row">
+            <span class="card-tag">PHP</span>
+            <span class="card-tag">MySQL</span>
+            <span class="card-tag">JavaScript</span>
+            <span class="card-tag">Bootstrap</span>
+          </div>
+          <h3 class="card-name">Inventory &amp; Sales Management System</h3>
+          <p class="card-desc">
+            A full-stack point-of-sale and inventory management web app — role-based auth,
+            real-time cart, atomic checkout transactions with row-level locking, and admin
+            reporting. <em style="color:var(--text-faint);">This slot will link to the live repo once uploaded.</em>
+          </p>
+          <div class="card-footer">
+            <div class="card-status">
+              <span class="status-dot dot-live"></span>
+              <span style="color:var(--pond-green);">Live</span>
+            </div>
+            <a href="https://github.com/Frroookie/Inventory-Sales-Management-System" target="_blank" rel="noopener" class="card-link">GitHub →</a>
+          </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="shell">
+    <div class="section-head">
+      <div>
+        <p class="section-eyebrow">Background</p>
+        <h2 class="section-title">About me</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I'm a <strong>Magna Cum Laude BSIT graduate</strong> from City of Malabon University
+          (class of 2025). I got into computers young — curious about how websites worked, how
+          things ran underneath what you could see. That curiosity turned into a degree, and the
+          degree into building real things.
+        </p>
+        <p>
+          My flagship project is a <strong>full-stack inventory and POS system</strong> — role-based
+          authentication, live cart management, stock tracking, and atomic checkout transactions
+          with row-level locking. I built it to work correctly under edge cases, not just the
+          happy path.
+        </p>
+        <p>
+          I also completed an <strong>IT support internship</strong> at Intellyx IT Solutions —
+          Active Directory, network troubleshooting, hardware diagnostics. That experience taught
+          me how software behaves in a real infrastructure environment, not just a local dev setup.
+        </p>
+        <p>
+          Outside of dev work: I genuinely like ducks. I had one growing up and I've been
+          fascinated by the variety of species ever since — which eventually turned into Pondnotes.
+        </p>
+      </div>
+ 
+      <div class="about-sidebar">
+        <div class="sidebar-block">
+          <div class="sb-row"><span class="sb-key">Degree</span><span class="sb-val hi">BSIT 2025</span></div>
+          <div class="sb-row"><span class="sb-key">Honours</span><span class="sb-val hi">Magna Cum Laude</span></div>
+          <div class="sb-row"><span class="sb-key">Stack</span><span class="sb-val">PHP · MySQL · JS</span></div>
+          <div class="sb-row"><span class="sb-key">Also learning</span><span class="sb-val">Python · Node.js</span></div>
+          <div class="sb-row"><span class="sb-key">Internship</span><span class="sb-val">IT Support · 3 mo</span></div>
+          <div class="sb-row"><span class="sb-key">Location</span><span class="sb-val">Malabon City, PH</span></div>
+          <div class="sb-row"><span class="sb-key">Status</span><span class="sb-val ok">Open to work</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="shell">
+    <div class="section-head" style="margin-bottom:48px;">
+      <div>
+        <p class="section-eyebrow">Get in touch</p>
+        <h2 class="section-title">Contact</h2>
+      </div>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-body">
+        <p>
+          I'm actively looking for junior software development, full-stack, or remote
+          work opportunities. Reach out and I'll reply promptly.
+        </p>
+        <p>
+          Based in Malabon City, Philippines. Available for local and fully remote roles,
+          and open to WFH, hybrid, or on-site positions in Metro Manila.
+        </p>
+        <div class="contact-ctas">
+          <a href="mailto:Rickroman.rl@gmail.com" class="btn btn-fill">✉ Send email</a>
+          <a href="https://github.com/Frroookie" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+          <a href="Lobaton_Resume_2026.pdf" download class="btn btn-ghost">Resume ↓</a>
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:Rickroman.rl@gmail.com" class="c-link">
+          <span class="c-icon">✉️</span>
+          <div><span class="c-label">Email</span><span class="c-val">Rickroman.rl@gmail.com</span></div>
+        </a>
+        <a href="https://github.com/Frroookie" target="_blank" rel="noopener" class="c-link">
+          <span class="c-icon">🐙</span>
+          <div><span class="c-label">GitHub</span><span class="c-val">github.com/Frroookie</span></div>
+        </a>
+        <div class="c-link" style="cursor:default;">
+          <span class="c-icon">📱</span>
+          <div><span class="c-label">Phone / Viber</span><span class="c-val">09455316499</span></div>
+        </div>
+        <div class="c-link" style="cursor:default;">
+          <span class="c-icon">📍</span>
+          <div><span class="c-label">Location</span><span class="c-val">Malabon City, Philippines</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <span class="f-left">Rickroman T. Lobaton — Magna Cum Laude, BSIT 2025</span>
+    <div class="f-right">
+      <a href="https://github.com/Frroookie" target="_blank" rel="noopener">GitHub</a>
+      <a href="Lobaton_Resume_2026.pdf" download>Resume</a>
+    </div>
+  </div>
+</footer>
+ 
+</body>
+</html>
